@@ -1,4 +1,4 @@
-# TIgger
+# Tigger
 
 Tales the fun out of using the GitHub API.
 
