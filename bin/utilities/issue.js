@@ -28,7 +28,7 @@ function issuesGetRequest(repository, state, userAgent, clientId, clientSecret, 
   getRequest(uri, query, userAgent, clientId, clientSecret, callback);
 }
 
-function editIssuePatchRequest(repository, title, description, issueNumber, gitHubAccessToken, callback) {
+function editIssuePatchRequest(repository, title, description, issueNumber, userAgent, gitHubAccessToken, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
         uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_ISSUES_URI}/${issueNumber}`,
@@ -43,10 +43,10 @@ function editIssuePatchRequest(repository, title, description, issueNumber, gitH
     encoding
   });
 
-  patchRequest(uri, query, body, gitHubAccessToken, callback);
+  patchRequest(uri, query, body, userAgent, gitHubAccessToken, callback);
 }
 
-function alterIssuePatchRequest(repository, state, issueNumber, gitHubAccessToken, callback) {
+function alterIssuePatchRequest(repository, state, issueNumber, userAgent, gitHubAccessToken, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
         uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_ISSUES_URI}/${issueNumber}`,
@@ -57,10 +57,10 @@ function alterIssuePatchRequest(repository, state, issueNumber, gitHubAccessToke
           encoding
         });
 
-  patchRequest(uri, query, body, gitHubAccessToken, callback);
+  patchRequest(uri, query, body, userAgent, gitHubAccessToken, callback);
 }
 
-function createIssuePostRequest(repository, title, description, gitHubAccessToken, callback) {
+function createIssuePostRequest(repository, title, description, userAgent, gitHubAccessToken, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
         uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_ISSUES_URI}`,
@@ -75,7 +75,7 @@ function createIssuePostRequest(repository, title, description, gitHubAccessToke
     encoding
   });
 
-  postRequest(uri, query, body, gitHubAccessToken, callback);
+  postRequest(uri, query, body, userAgent, gitHubAccessToken, callback);
 }
 
 module.exports = {
