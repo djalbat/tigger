@@ -29,9 +29,7 @@ You will need to clone the repository if you want to run the examples.
 
 ## Usage
 
-Each of the collections of utility functions described below is exported as a plain old JavaScript object. To get hold of them, require the requisite object and then destructure it:
-
-Or the `require()` function can be used where appropriate:
+Each of the collections of utility functions is exported as a plain old JavaScript object. To get hold of them, require the requisite object and then destructure it:
 
 ```
 const { issueUtilities, repositoryUtilities } = require("tigger");
