@@ -1,0 +1,31 @@
+"use strict";
+
+const SETTINGS_URI = "/settings",
+      LATEST_RELEASES_URI = "/",  ///
+      GITHUB_USER_URI = "/user",
+      GITHUB_REPOS_URI = "/repos",
+      GITHUB_ISSUES_URI = "/issues",
+      GITHUB_COMMENTS_URI = "/comments",
+      GITHUB_GIT_TREES_URI = "/git/trees",
+      GITHUB_GIT_BLOBS_URI = "/git/blobs",
+      GITHUB_GIT_COMMITS_URI = "/git/commits",
+      GITHUB_ISSUES_COMMENTS_URI = "/issues/comments",
+      GITHUB_GIT_REFS_HEADS_MASTER_URI = "/git/refs/heads/master",
+      GITHUB_LOGIN_OAUTH_AUTHORIZE_URI = "/login/oauth/authorize",
+      GITHUB_LOGIN_OAUTH_ACCESS_TOKEN_URI = "/login/oauth/access_token";
+
+module.exports = {
+  SETTINGS_URI,
+  LATEST_RELEASES_URI,
+  GITHUB_USER_URI,
+  GITHUB_REPOS_URI,
+  GITHUB_ISSUES_URI,
+  GITHUB_COMMENTS_URI,
+  GITHUB_GIT_TREES_URI,
+  GITHUB_GIT_BLOBS_URI,
+  GITHUB_GIT_COMMITS_URI,
+  GITHUB_ISSUES_COMMENTS_URI,
+  GITHUB_LOGIN_OAUTH_AUTHORIZE_URI,
+  GITHUB_GIT_REFS_HEADS_MASTER_URI,
+  GITHUB_LOGIN_OAUTH_ACCESS_TOKEN_URI
+};
