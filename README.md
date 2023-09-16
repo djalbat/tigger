@@ -2,7 +2,9 @@
 
 Takes the fun out of using the GitHub API.
 
-This package provides utility functions to handle issues and comments as well as commits to the GitHub API. There are also a few more or less trivial functions for dealing with repository URLs that are used internally and may as well be exposed for the small amount of utility they offer. The issues and comments utility functions are more or less comprehensive. On the other hand the commit utility functions are less so but nonetheless useful in simple use cases. There are also examples to get you started and that may help to debunk the use of the commit endpoints especially. 
+This package provides utility functions to handle issues and comments as well as commits to the GitHub API. There are also a few more or less trivial functions for dealing with repository URLs that are used internally and may as well be exposed for the small amount of utility they may offer. 
+
+The issues and comments utility functions are more or less comprehensive. On the other hand the commit utility functions are less so, but nonetheless adequate in simple use cases. There are also examples to get you started and that may help to debunk the use of the commit endpoints especially. 
 
 * [Commit utilities](#commit-utilities)
 * [Issue utilities](#issue-utilities)
