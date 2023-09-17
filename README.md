@@ -74,7 +74,7 @@ function getIssuesOperation(next, done, context) {
 }
 ```
 
-Usage of the utility functions for issues and comments that make `POST` requests should again all follow along similar lines. They take `repository`, `userAgent`, `gitHubAccessToken` and `callback` arguments, amongst possibly others. The callback should again be a function accepting `error` and `json` arguments:
+Usage of the utility functions for issues and comments that make `POST` and `PATCH` requests should again all follow along similar lines. They take `repository`, `userAgent`, `gitHubAccessToken` and `callback` arguments, amongst possibly others. The callback should again be a function accepting `error` and `json` arguments:
 
 ```
 function createIssueOperation(next, done, context) {
@@ -123,7 +123,13 @@ Functions for handling issues.
 
 * The `issuesGetRequest()` function [lists repository issues](https://docs.github.com/en/free-pro-team@latest/rest/issues/issues?apiVersion=2022-11-28#list-repository-issues).   
 
-* The `issueGetRequest()` function [gets a repository issue](https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#get-an-issue). It takes an `issueNumber` argument as well as the aforementioned arguments.
+* The `issueGetRequest()` function [gets an issue](https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#get-an-issue). It takes an additional `issueNumber` argument.
+
+* The `createIssuePostRequest()` function [creates an issue](https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#create-an-issue). It takes additional `title` and `description` arguments.
+
+* The `editIssuePatchRequest()` function [updates an issue](https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#create-an-issue) 's title and description. It takes additional `title` and `description` arguments.
+
+* The `alterIssuePatchRequest()` function [updates an issue](https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#create-an-issue) 's state. It takes an additional `stage` argument.
 
 ## Commit utilities
 
