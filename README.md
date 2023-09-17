@@ -149,11 +149,11 @@ Functions for handling issues.
 
 * The `issueGetRequest()` function [gets an issue](https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#get-an-issue). It takes an additional `issueNumber` argument.
 
-* The `createIssuePostRequest()` function [creates an issue](https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#create-an-issue). It takes additional `issueNumber`, `title` and `description` arguments.
+* The `createIssuePostRequest()` function [creates an issue](https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#create-an-issue). It takes additional `title` and `description` arguments.
 
-* The `editIssuePatchRequest()` function [updates an issue](https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#create-an-issue) 's title and description. It takes additional `issueNumber`, `title` and `description` arguments.
+* The `editIssuePatchRequest()` function [updates an issue](https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#create-an-issue)'s title and description. It takes additional `issueNumber`, `title` and `description` arguments.
 
-* The `alterIssuePatchRequest()` function [updates an issue](https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#create-an-issue) 's state. It takes additional `issueNumber` and`stage` arguments.
+* The `alterIssuePatchRequest()` function [updates an issue](https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#create-an-issue)'s state. It takes additional `issueNumber` and`stage` arguments.
 
 ## Comment utilities
 
