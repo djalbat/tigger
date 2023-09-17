@@ -252,16 +252,18 @@ function commitHandler(context) {
 }
 ```
 
-We now walk through a simple use case of committing two files to a repository, the kind of operation that the above handler admits.
+We now walk through a simple use case of committing two files to a repository:
 
-1. Get the SHA of the latest commit to the repository. Eventually this will be used when the commit in question is ready to go. If it has become outdated by then then the commit will fail. The GitHub endpoint in question is `/git/refs/heads/master`.
-2. Get a base tree SHA. This base tree is the structure to which the files in the commit will be added. This step often confuses because it might not seem necessary to effectively create this structure on the server via an endpoint prior to use. Nonetheless, this is the way that it is done. The corresponding GitHub endpoint is `/git/commits`.
-3. Post the file contents. Two files are spoofed in this example. When each file's content is posted a SHA is returned. It should be clear that such as approach will not scale. More efficient but convoluted approaches are not currently supported, however. The endpoint is `/git/blobs`.
+1. Get the SHA of the latest commit to the repository. If it becomes outdated then then the commit in progress will fail. The GitHub endpoint in question is `/git/refs/heads/master`.
+2. Get a base tree SHA. This base tree is the structure to which the files in the commit will be added. This step often confuses because it might not seem necessary to create this on the server via an endpoint prior to use. The corresponding GitHub endpoint is `/git/commits`.
+3. Post the file contents. Two files are spoofed in this example. When each file's content is posted a SHA is returned. It should be clear that such as approach will not scale. The endpoint is `/git/blobs`.
 4. Post the two file content SHAs together with their corresponding file paths. A commit tree SHA is returned. The endpoint is `/git/trees`.
 5. Post the commit tree SHA together with the latest commit SHA. A commit SHA is returned. The endpoint is `/git/commits`.
-6. Finally, update the repository head by posting the commit SHA. The endpoint is `/git/refs/heads/master`. 
+6. Finally, update the repository's head by posting the commit SHA. The endpoint is `/git/refs/heads/master`.
 
-It is likely that there will be some interaction with a database as well as with the GitHub API in the course of any handler's execution and therefore it might be worth looking at the [Murmuration](https://github.com/djalbat/murmuration) package. In fact the example handlers and operations were originally based on functions written to work with this package.
+Perhaps the best thing to say about this process is that it kind of makes sense as familiarity grows.
+
+As an aside, it is likely that there will be some interaction with a database as well as with the GitHub API in the course of any handler's execution and therefore it might be worth looking at the [Murmuration](https://github.com/djalbat/murmuration) package. In fact the example handlers and operations were originally based on functions written to work with this package.
 
 ## Contact
 
