@@ -252,6 +252,11 @@ function commitHandler(context) {
 }
 ```
 
+We now walk through a simple use case of committing two files to a repository, the kind of operation that the above handler admits.
+
+1. Get the SHA of the latest commit to the repository. Eventually this will be used when the commit in question is ready to go. If it has become outdated by then then the commit will fail. The GitHub endpoint in question is `/git/refs/heads/master`.
+2. Get a base tree SHA. This base tree is the structure to which the files in the commit will be added. The corresponding GitHub endpoint is `/git/commits`.
+
 It is likely that there will be some interaction with a database as well as with the GitHub API in the course of any handler's execution and therefore it might be worth looking at the [Murmuration](https://github.com/djalbat/murmuration) package. In fact the example handlers and operations were originally based on functions written to work with this package.
 
 ## Contact
