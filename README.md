@@ -74,7 +74,40 @@ function getIssuesOperation(next, done, context) {
 }
 ```
 
-In the above listing, as per the examples, the `issuesGetRequest()` function invocation is shown inside of an asynchronous operation that takes `next()` and `done()` callback arguments as well as a `context` argument. This is not the only way they can be invoked, of course, but bear in mind that all of the utility functions take callbacks and must be invoked in some such way. 
+Usage of the utility functions for issues and comments that make `POST` requests should again all follow along similar lines. They take `repository`, `userAgent`, `gitHubAccessToken` and `callback` arguments, amongst possibly others. The callback should again be a function accepting `error` and `json` arguments:
+
+```
+function createIssueOperation(next, done, context) {
+  const { repository, title, description, userAgent, gitHubAccessToken } = context;
+
+  createIssuePostRequest(repository, title, description, userAgent, gitHubAccessToken, (error, json) => {
+    if (error) {
+      done();
+
+      return;
+    }
+
+    const { message = null } = json;
+
+    if (message !== null) {
+      done();
+
+      return;
+    }
+
+    const { number } = json,
+          issueNumber = number; ///
+
+    Object.assign(context, {
+      issueNumber
+    });
+
+    next();
+  });
+}
+```
+
+In the above listings, as per the examples, the function invocations are shown inside of asynchronous operations that take `next()` and `done()` callback arguments as well as a `context` argument. This is not the only way they can be invoked, of course, but bear in mind that all of the utility functions take callbacks and must be invoked in some such way.
 
 The JSON that is returned is exactly that returned by the requisite GitHub endpoint, by the way. 
 
@@ -82,13 +115,15 @@ The JSON that is returned is exactly that returned by the requisite GitHub endpo
 
 - `issuesGetRequest()`
 - `issueGetRequest()`
+- `createIssuePostRequest()`
 - `editIssuePatchRequest()`
 - `alterIssuePatchRequest()`
-- `createIssuePostRequest()`
 
 Functions for handling issues.
 
 * The `issuesGetRequest()` function [lists repository issues](https://docs.github.com/en/free-pro-team@latest/rest/issues/issues?apiVersion=2022-11-28#list-repository-issues).   
+
+* The `issueGetRequest()` function [gets a repository issue](https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#get-an-issue). It takes an `issueNumber` argument as well as the aforementioned arguments.
 
 ## Commit utilities
 
