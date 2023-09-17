@@ -261,7 +261,7 @@ We now walk through a simple use case of committing two files to a repository:
 5. Post the commit tree SHA together with the latest commit SHA. A commit SHA is returned. The endpoint is `/git/commits`.
 6. Finally, update the repository's head by posting the commit SHA. The endpoint is `/git/refs/heads/master`.
 
-Perhaps the best thing to say about this process is that it kind of makes sense as familiarity grows.
+Perhaps the best thing to say about this process is that it begins to make sense as familiarity grows.
 
 As an aside, it is likely that there will be some interaction with a database as well as with the GitHub API in the course of any handler's execution and therefore it might be worth looking at the [Murmuration](https://github.com/djalbat/murmuration) package. In fact the example handlers and operations were originally based on functions written to work with this package.
 
