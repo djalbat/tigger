@@ -42,7 +42,7 @@ const { isRepositoryValid } = repositoryUtilities,
 
 You will need certain information to hand in order to call the utility functions that interact with the GitHub API. This includes your GitHub application's client identifier and secret as well as an access token for anything other than `GET` requests. This is typically recovered via an OAuth flow, which is beyond of the scope of this package. Lastly, a user agent string is required as this must be passed to all of the GitHub endpoints. GitHub recommend that this is either a username or the application's name.
 
-Use of utility functions for issues and comments that make `GET` requests all follow along similar lines. They take, amongst possibly others, `repository`, `userAgent`, `clientId`, `clientSecret` and `callback` arguments. The callback should be a function accepting `error` and `json` arguments:
+Usage of the utility functions for issues and comments that make `GET` requests should all follow along similar lines. They take `repository`, `userAgent`, `clientId`, `clientSecret` and `callback` arguments, amongst possibly others. The callback should be a function accepting `error` and `json` arguments:
 
 ```
 function getIssuesOperation(next, done, context) {
@@ -74,7 +74,9 @@ function getIssuesOperation(next, done, context) {
 }
 ```
 
-In the above listing, as per the examples, the `issuesGetRequest()` function invocation is shown inside of an asynchronous operation that takes `next()` and `done()` callback argument as well as a `context` argument. This may not be preferred, however bear in mind that all of the utility functions take callbacks and must be invoked in some such way. The JSON that is returned is exactly that returned by the requisite GitHub endpoint, by the way. 
+In the above listing, as per the examples, the `issuesGetRequest()` function invocation is shown inside of an asynchronous operation that takes `next()` and `done()` callback arguments as well as a `context` argument. This is not the only way they can be invoked, of course, but bear in mind that all of the utility functions take callbacks and must be invoked in some such way. 
+
+The JSON that is returned is exactly that returned by the requisite GitHub endpoint, by the way. 
 
 ## Issue utilities
 
