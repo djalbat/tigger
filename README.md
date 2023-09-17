@@ -42,17 +42,45 @@ const { isRepositoryValid } = repositoryUtilities,
 
 You will need certain information to hand in order to call the utility functions that interact with the GitHub API. This includes your GitHub application's client identifier and secret as well as an access token for anything other than `GET` requests. This is typically recovered via an OAuth flow, which is beyond of the scope of this package. Lastly, a user agent string is required as this must be passed to all of the GitHub endpoints. GitHub recommend that this is either a username or the application's name.
 
+Use of utility functions for issues and comments that make `GET` requests all follow along similar lines. They take, amongst possibly others, `repository`, `userAgent`, `clientId`, `clientSecret` and `callback` arguments. The callback argument should be a function accepting `error` and `json` arguments:
+
+```
+issuesGetRequest(repository, state, userAgent, clientId, clientSecret, (error, json) => {
+  if (error) {
+    done();
+  
+    return;
+  }
+  
+  const { message = null } = json;
+  
+  if (message !== null) {
+    done();
+    
+    return;
+  }
+  
+  const issues = json;  ///
+  
+  Object.assign(context, {
+    issues
+  });
+  
+  next();
+});
+```
+
 ## Issue utilities
 
-- `issueGetRequest()`
 - `issuesGetRequest()`
+- `issueGetRequest()`
 - `editIssuePatchRequest()`
 - `alterIssuePatchRequest()`
 - `createIssuePostRequest()`
 
 Functions for handling issues.
 
-* The `issueGetRequest()` function [lists repository issues](https://docs.github.com/en/free-pro-team@latest/rest/issues/issues?apiVersion=2022-11-28#list-repository-issues).   
+* The `issuesGetRequest()` function [lists repository issues](https://docs.github.com/en/free-pro-team@latest/rest/issues/issues?apiVersion=2022-11-28#list-repository-issues).   
 
 ## Commit utilities
 
