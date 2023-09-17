@@ -153,7 +153,7 @@ Functions for handling issues.
 
 * The `editIssuePatchRequest()` function [updates an issue](https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#create-an-issue)'s title and description. It takes additional `issueNumber`, `title` and `description` arguments.
 
-* The `alterIssuePatchRequest()` function [updates an issue](https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#create-an-issue)'s state. It takes additional `issueNumber` and`stage` arguments.
+* The `alterIssuePatchRequest()` function [updates an issue](https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#create-an-issue)'s state. It takes additional `issueNumber` and`state` arguments.
 
 ## Comment utilities
 
@@ -166,9 +166,9 @@ Functions for handling issues.
 
 * The `createCommentPostRequest()` function [creates a comment](https://docs.github.com/en/rest/issues/comments?apiVersion=2022-11-28#create-an-issue-comment). It takes an additional `issueNumber`  and `description` arguments.
 
-* The `editCommentPatchRequest()` function [updates a comment](https://docs.github.com/en/rest/issues/comments?apiVersion=2022-11-28#update-an-issue-comment) 's description. It a `commentIdentifier` and  `description` arguments.
+* The `editCommentPatchRequest()` function [updates a comment](https://docs.github.com/en/rest/issues/comments?apiVersion=2022-11-28#update-an-issue-comment)'s description. It takes additional `commentIdentifier` and  `description` arguments.
 
-* The `removeCommentDeleteRequest()` function [removes a comment](https://docs.github.com/en/rest/issues/comments?apiVersion=2022-11-28#delete-an-issue-comment) 's state. It takes additional `commentIdentifier` argument.
+* The `removeCommentDeleteRequest()` function [removes a comment](https://docs.github.com/en/rest/issues/comments?apiVersion=2022-11-28#delete-an-issue-comment). It takes an additional `commentIdentifier` argument.
 
 ## Commit utilities
 
