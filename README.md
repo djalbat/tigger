@@ -107,7 +107,7 @@ function createIssueOperation(next, done, context) {
 }
 ```
 
-There is one utility functions for issues and comments that makes a `DELETE` request. It takes `repository`, `userAgent`, `gitHubAccessToken` and `callback` arguments, amongst possibly others. The callback should be a function accepting `error` and `string` arguments this time:
+There is one utility function for issues and comments that makes a `DELETE` request. It takes `repository`, `userAgent`, `gitHubAccessToken` and `callback` arguments, amongst possibly others. The callback should be a function accepting `error` and `string` arguments this time:
 
 ```
 function removeCommentOperation(next, done, context) {
@@ -130,6 +130,8 @@ function removeCommentOperation(next, done, context) {
   });
 }
 ```
+
+The utility functions relating to commits follow along entirely similar lines although the arguments differ. They are covered more extensively in the examples section later on.
 
 In the above listings, as per the examples, the function invocations are shown inside of asynchronous operations that take `next()` and `done()` callback arguments as well as a `context` argument. This is not the only way they can be invoked, of course, but bear in mind that all of the utility functions take callbacks and must be invoked in some such way.
 
@@ -162,6 +164,8 @@ Functions for handling issues.
 - `editCommentPatchRequest()`
 - `removeCommentDeleteRequest()`
 
+Functions for handling comments.
+* 
 * The `commentsGetRequest()` function [lists issue comments](https://docs.github.com/en/rest/issues/comments?apiVersion=2022-11-28#list-issue-comments-for-a-repository). It takes an additional `issueNumber` argument.
 
 * The `createCommentPostRequest()` function [creates a comment](https://docs.github.com/en/rest/issues/comments?apiVersion=2022-11-28#create-an-issue-comment). It takes an additional `issueNumber`  and `description` arguments.
@@ -172,14 +176,26 @@ Functions for handling issues.
 
 ## Commit utilities
 
-- `commitSHAPostRequest()`
-- `baseTreeSHAGetRequest()`
-- `updatedHeadPostRequest()`
-- `commitTreeSHAPostRequest()`
-- `contentBlobSHAPostRequest()`
 - `latestCommitSHAGetRequest()`
+- `baseTreeSHAGetRequest()`
+- `contentBlobSHAPostRequest()`
+- `(commitTreeSHAPostRequest)`
+- `commitSHAPostRequest()`
+- `updatedHeadPostRequest()`
 
+Functions for handling commits. No corresponding links to GitHub API documentation are provided alongside the function descriptions because the process of committing via the GitHub API and therefore the relevant documentation is somewhat convoluted. See the examples section later on for further explanations. 
 
+* The `latestCommitSHAGetRequest()` function gets the latest commit SHA.
+
+* The `baseTreeSHAGetRequest()` function gets the base tree SHA.
+
+* The `contentBlobSHAPostRequest()` posts some content then returns the corresponding SHA.
+
+* The `commitTreeSHAPostRequest()` posts SHAs and corresponding file paths the returns the commit tree SHA.
+
+* The `commitSHAPostRequest()` posts the commit tree SHA and returns the commit SHA.
+
+* The `updatedHeadPostRequest()` posts the commit SHA in order to update the head.
 
 ## Contact
 
