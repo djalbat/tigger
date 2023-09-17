@@ -213,6 +213,16 @@ Functions for handling commits. No corresponding links to GitHub API documentati
 
 ## Examples
 
+These consist of a number of so-called handler functions that are meant to be broadly akin to the kinds of handler functions needed by frameworks such as Node's Express. Rather than taking request and response objects as arguments, however, they take a `context` object as their single argument. This must be populated with, amongst other things, your application's client credentials together with an access token. As mentioned already, the access token would typically be retrieved by way of an OAuth flow. 
+
+There is an `example.js` file in this repository's `bin` directory. You should fill the aforementioned values of the `context` object there and then call whichever handler function interests you.
+
+Tha handler functions themselves all make use of a `sequencee()` asynchronous utility function which is provided by the [Necessary](https://github.com/djalbat/necessary) package. The idea is to show that several of the functions can and sometimes should called sequentially, but nonetheless asynchronously. Each is wrapped in what we call an operation, namely a function that takes the context together with some callback functions as arguments, in order to provide the required asynchronous behaviour. 
+
+It is likely that there will be some interaction with a database as well as with the GitHub API in the course of any handler's execution and therefore it might be worth looking at the [Murmuration](https://github.com/djalbat/murmuration) package. In fact the example handlers and operations were originally based on functions written to work with this package.
+
+The handlers themselves fall into two categories, namely issue and comment handlers and a commit handler. The issue and comment handlers are more or less vacuous and simply demonstrate the point that there are occassions when more than one of the issue and comment utility functions should be called in the course of a single handler's execution. Some of the issue and comment handlers are pretty vacuous, however, in the sense that they only call one operation. For example the `issuesHandler()` function. For a good example of a non-trivial handler, take a look at the `removeCommentHandler()` function.
+
 ## Contact
 
 - james.smith@djalbat.com
