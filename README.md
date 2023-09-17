@@ -197,6 +197,22 @@ Functions for handling commits. No corresponding links to GitHub API documentati
 
 * The `updatedHeadPostRequest()` posts the commit SHA in order to update the head.
 
+## Repository utilities
+
+- `isRepositoryValid()`
+- `repoFromRepository()`
+- `ownerFromRepository()`
+
+Functions for dealing with a repository string.
+
+* The `isRepositoryValid()` function returns true if the repository URL string is valid, specifically if the repository's name and owner can be recovered from it.
+
+* The `repoFromRepository()` function returns true if the repository's name, called the `repo` by GibHub, can be recovered.  
+
+* The `ownerFromRepository()` function returns true if the repository's owner can be recovered.
+
+## Examples
+
 ## Contact
 
 - james.smith@djalbat.com
