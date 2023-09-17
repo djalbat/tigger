@@ -191,7 +191,7 @@ Functions for handling commits. No corresponding links to GitHub API documentati
 
 * The `contentBlobSHAPostRequest()` posts some content then returns the corresponding SHA.
 
-* The `commitTreeSHAPostRequest()` posts SHAs and corresponding file paths the returns the commit tree SHA.
+* The `commitTreeSHAPostRequest()` posts SHAs and file paths the returns the commit tree SHA.
 
 * The `commitSHAPostRequest()` posts the commit tree SHA and returns the commit SHA.
 
