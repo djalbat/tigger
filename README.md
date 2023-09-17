@@ -217,11 +217,42 @@ These consist of a number of so-called handler functions that are meant to be br
 
 There is an `example.js` file in this repository's `bin` directory. You should fill the aforementioned values of the `context` object there and then call whichever handler function interests you.
 
-Tha handler functions themselves all make use of a `sequencee()` asynchronous utility function which is provided by the [Necessary](https://github.com/djalbat/necessary) package. The idea is to show that several of the functions can and sometimes should called sequentially, but nonetheless asynchronously. Each is wrapped in what we call an operation, namely a function that takes the context together with some callback functions as arguments, in order to provide the required asynchronous behaviour. 
+Tha handler functions all make use of the `sequencee()` asynchronous utility function provided by the [Necessary](https://github.com/djalbat/necessary) package. The idea is to show that several of the utility functions can and sometimes should called sequentially albeit asynchronously. Each is wrapped in what we call an operation, namely a function that takes the context together with some callback functions as arguments, in order to provide the required asynchronous behaviour. 
+
+Tha handler functions fall into two categories, namely issue and comment handlers and a commit handler. The issue and comment handlers are more or less vacuous and simply demonstrate the point that there are occassions when more than one of the issue and comment utility functions should be called in the course of a single handler's execution. See the `removeCommentHandler()` function For an example of a non-trivial handler. We focus on the commit handler from now on. Here is the listing:
+
+```
+function commitHandler(context) {
+  const commitMessage = "...",
+        readmeFilePath = "...",
+        metaJSONFilePath = "...",
+        readmeFileContent = "...",
+        metaJSONFileContent = "...",
+        operations = [
+          getLatestCommitSHAOperation,
+          getBaseTreeSHAOperation,
+          postReadmeFileContentOperation,
+          postMetaJSONFileContentOperation,
+          postCommitTreeSHAOperation,
+          postCommitSHAOperation,
+          postUpdatedHeadOperation
+        ];
+
+  Object.assign(context, {
+    commitMessage,
+    readmeFilePath,
+    metaJSONFilePath,
+    readmeFileContent,
+    metaJSONFileContent
+  });
+
+  sequence(operations, () => {
+    ///
+  }, context);
+}
+```
 
 It is likely that there will be some interaction with a database as well as with the GitHub API in the course of any handler's execution and therefore it might be worth looking at the [Murmuration](https://github.com/djalbat/murmuration) package. In fact the example handlers and operations were originally based on functions written to work with this package.
-
-The handlers themselves fall into two categories, namely issue and comment handlers and a commit handler. The issue and comment handlers are more or less vacuous and simply demonstrate the point that there are occassions when more than one of the issue and comment utility functions should be called in the course of a single handler's execution. Some of the issue and comment handlers are pretty vacuous, however, in the sense that they only call one operation. For example the `issuesHandler()` function. For a good example of a non-trivial handler, take a look at the `removeCommentHandler()` function.
 
 ## Contact
 
