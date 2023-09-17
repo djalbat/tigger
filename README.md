@@ -8,8 +8,8 @@ The issues and comments utility functions are more or less comprehensive. On the
 
 * [Issue utilities](#issue-utilities)
 * [Comment utilities](#comment-utilities)
-* [Commit utilities](#commit-utilities)
 * [Repository utilities](#repository-utilities)
+* [Commit utilities](#commit-utilities)
 
 ## Installation
 
@@ -174,6 +174,20 @@ Functions for handling comments.
 
 * The `removeCommentDeleteRequest()` function [removes a comment](https://docs.github.com/en/rest/issues/comments?apiVersion=2022-11-28#delete-an-issue-comment). It takes an additional `commentIdentifier` argument.
 
+## Repository utilities
+
+- `isRepositoryValid()`
+- `repoFromRepository()`
+- `ownerFromRepository()`
+
+Functions for dealing with a repository string.
+
+* The `isRepositoryValid()` function returns true if the repository URL string is valid, specifically if the repository's name and owner can be recovered from it.
+
+* The `repoFromRepository()` function returns true if the repository's name, called the `repo` by GibHub, can be recovered.
+
+* The `ownerFromRepository()` function returns true if the repository's owner can be recovered.
+
 ## Commit utilities
 
 - `latestCommitSHAGetRequest()`
@@ -196,20 +210,6 @@ Functions for handling commits. No corresponding links to GitHub API documentati
 * The `commitSHAPostRequest()` posts the commit tree SHA and returns the commit SHA.
 
 * The `updatedHeadPostRequest()` posts the commit SHA in order to update the head.
-
-## Repository utilities
-
-- `isRepositoryValid()`
-- `repoFromRepository()`
-- `ownerFromRepository()`
-
-Functions for dealing with a repository string.
-
-* The `isRepositoryValid()` function returns true if the repository URL string is valid, specifically if the repository's name and owner can be recovered from it.
-
-* The `repoFromRepository()` function returns true if the repository's name, called the `repo` by GibHub, can be recovered.  
-
-* The `ownerFromRepository()` function returns true if the repository's owner can be recovered.
 
 ## Examples
 
