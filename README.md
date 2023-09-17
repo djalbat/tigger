@@ -6,9 +6,9 @@ This package provides utility functions to handle issues and comments as well as
 
 The issues and comments utility functions are more or less comprehensive. On the other hand the commit utility functions are less so, but nonetheless adequate in simple use cases. There are also examples to get you started and that may help to debunk the use of the commit endpoints especially. 
 
-* [Commit utilities](#commit-utilities)
 * [Issue utilities](#issue-utilities)
 * [Comment utilities](#comment-utilities)
+* [Commit utilities](#commit-utilities)
 * [Repository utilities](#repository-utilities)
 
 ## Installation
@@ -41,6 +41,29 @@ const { isRepositoryValid } = repositoryUtilities,
 ```
 
 You will need certain information to hand in order to call the utility functions that interact with the GitHub API. This includes your GitHub application's client identifier and secret as well as an access token for anything other than `GET` requests. This is typically recovered via an OAuth flow, which is beyond of the scope of this package. Lastly, a user agent string is required as this must be passed to all of the GitHub endpoints. GitHub recommend that this is either a username or the application's name.
+
+## Issue utilities
+
+- `issueGetRequest()`
+- `issuesGetRequest()`
+- `editIssuePatchRequest()`
+- `alterIssuePatchRequest()`
+- `createIssuePostRequest()`
+
+Functions for handling issues.
+
+* The `issueGetRequest()` function [lists repository issues](https://docs.github.com/en/free-pro-team@latest/rest/issues/issues?apiVersion=2022-11-28#list-repository-issues).   
+
+## Commit utilities
+
+- `commitSHAPostRequest()`
+- `baseTreeSHAGetRequest()`
+- `updatedHeadPostRequest()`
+- `commitTreeSHAPostRequest()`
+- `contentBlobSHAPostRequest()`
+- `latestCommitSHAGetRequest()`
+
+
 
 ## Contact
 
