@@ -267,4 +267,4 @@ As an aside, it is likely that there will be some interaction with a database as
 
 ## Contact
 
-- james.smith@djalbat.com
+* james.smith@djalbat.com
