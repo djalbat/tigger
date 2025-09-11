@@ -1,7 +1,7 @@
 {
   "name": "tigger",
   "author": "James Smith",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "license": "MIT, Anti-996",
   "homepage": "https://github.com/djalbat/tigger",
   "description": "Tales the fun out of using the GitHub API.",
@@ -10,7 +10,7 @@
     "url": "https://github.com/djalbat/tigger"
   },
   "dependencies": {
-    "necessary": "^14.3.2"
+    "necessary": "^15.0.1"
   },
   "scripts": {}
 }
