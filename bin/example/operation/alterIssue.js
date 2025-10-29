@@ -1,6 +1,6 @@
 "use strict";
 
-const { issueUtilities } = require("../../..");  ///
+const { issueUtilities } = require("../../../lib");  ///
 
 const { alterIssuePatchRequest } = issueUtilities;
 

@@ -1,14 +1,14 @@
 "use strict";
 
-const { encodings } = require("necessary");
+import { encodings } from "necessary";
 
-const { GITHUB_REPOS_URI, GITHUB_ISSUES_URI } = require("../uris"),
-      { getRequest, postRequest, patchRequest } = require("../utilities/request"),
-      { repoFromRepository, ownerFromRepository } = require("../utilities/repository");
+import { GITHUB_REPOS_URI, GITHUB_ISSUES_URI } from "../uris";
+import { getRequest, postRequest, patchRequest } from "../utilities/request";
+import { repoFromRepository, ownerFromRepository } from "../utilities/repository";
 
 const { UTF_8_ENCODING } = encodings;
 
-function issueGetRequest(repository, issueNumber, userAgent, clientId, clientSecret, callback) {
+export function issueGetRequest(repository, issueNumber, userAgent, clientId, clientSecret, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
         uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_ISSUES_URI}/${issueNumber}?`,
@@ -17,7 +17,7 @@ function issueGetRequest(repository, issueNumber, userAgent, clientId, clientSec
   getRequest(uri, query, userAgent, clientId, clientSecret, callback);
 }
 
-function issuesGetRequest(repository, state, userAgent, clientId, clientSecret, callback) {
+export function issuesGetRequest(repository, state, userAgent, clientId, clientSecret, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
         uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_ISSUES_URI}`,
@@ -28,7 +28,7 @@ function issuesGetRequest(repository, state, userAgent, clientId, clientSecret, 
   getRequest(uri, query, userAgent, clientId, clientSecret, callback);
 }
 
-function editIssuePatchRequest(repository, title, description, issueNumber, userAgent, gitHubAccessToken, callback) {
+export function editIssuePatchRequest(repository, title, description, issueNumber, userAgent, gitHubAccessToken, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
         uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_ISSUES_URI}/${issueNumber}`,
@@ -46,7 +46,7 @@ function editIssuePatchRequest(repository, title, description, issueNumber, user
   patchRequest(uri, query, body, userAgent, gitHubAccessToken, callback);
 }
 
-function alterIssuePatchRequest(repository, state, issueNumber, userAgent, gitHubAccessToken, callback) {
+export function alterIssuePatchRequest(repository, state, issueNumber, userAgent, gitHubAccessToken, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
         uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_ISSUES_URI}/${issueNumber}`,
@@ -60,7 +60,7 @@ function alterIssuePatchRequest(repository, state, issueNumber, userAgent, gitHu
   patchRequest(uri, query, body, userAgent, gitHubAccessToken, callback);
 }
 
-function createIssuePostRequest(repository, title, description, userAgent, gitHubAccessToken, callback) {
+export function createIssuePostRequest(repository, title, description, userAgent, gitHubAccessToken, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
         uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_ISSUES_URI}`,
@@ -78,7 +78,7 @@ function createIssuePostRequest(repository, title, description, userAgent, gitHu
   postRequest(uri, query, body, userAgent, gitHubAccessToken, callback);
 }
 
-module.exports = {
+export default {
   issueGetRequest,
   issuesGetRequest,
   editIssuePatchRequest,

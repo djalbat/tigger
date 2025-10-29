@@ -1,13 +1,13 @@
 "use strict";
 
-const { arrayUtilities } = require("necessary");
+import { arrayUtilities } from "necessary";
 
 const { second } = arrayUtilities;
 
 const repoRegularExpression = /([^\/]+)$/,
       ownerRegularExpression = /([^\/]+)\/[^\/]+$/;
 
-function isRepositoryValid(repository) {
+export function isRepositoryValid(repository) {
   const repoPresent = repoRegularExpression.test(repository),
         ownerPresent = ownerRegularExpression.test(repository),
         repositoryValid = (repoPresent && ownerPresent);
@@ -15,7 +15,7 @@ function isRepositoryValid(repository) {
   return repositoryValid;
 }
 
-function repoFromRepository(repository) {
+export function repoFromRepository(repository) {
   const matches = repository.match(repoRegularExpression),
         secondMatch = second(matches),
         repo = secondMatch; ///
@@ -23,7 +23,7 @@ function repoFromRepository(repository) {
   return repo;
 }
 
-function ownerFromRepository(repository) {
+export function ownerFromRepository(repository) {
   const matches = repository.match(ownerRegularExpression),
         secondMatch = second(matches),
         owner = secondMatch; ///
@@ -31,9 +31,8 @@ function ownerFromRepository(repository) {
   return owner;
 }
 
-module.exports = {
+export default {
   isRepositoryValid,
   repoFromRepository,
   ownerFromRepository
 };
-

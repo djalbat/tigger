@@ -1,6 +1,6 @@
 "use strict";
 
-const { commitUtilities } = require("../../..");  ///
+const { commitUtilities } = require("../../../lib");  ///
 
 const { contentBlobSHAPostRequest } = commitUtilities;
 

@@ -1,14 +1,14 @@
 "use strict";
 
-const { encodings } = require("necessary");
+import { encodings } from "necessary";
 
-const { repoFromRepository, ownerFromRepository } = require("../utilities/repository"),
-      { getRequest, postRequest, patchRequest, deleteRequest } = require("../utilities/request"),
-      { GITHUB_REPOS_URI, GITHUB_ISSUES_URI, GITHUB_COMMENTS_URI, GITHUB_ISSUES_COMMENTS_URI } = require("../uris");
+import { repoFromRepository, ownerFromRepository } from "../utilities/repository";
+import { getRequest, postRequest, patchRequest, deleteRequest } from "../utilities/request";
+import { GITHUB_REPOS_URI, GITHUB_ISSUES_URI, GITHUB_COMMENTS_URI, GITHUB_ISSUES_COMMENTS_URI } from "../uris";
 
 const { UTF_8_ENCODING } = encodings;
 
-function commentsGetRequest(repository, issueNumber, userAgent, clientId, clientSecret, callback) {
+export function commentsGetRequest(repository, issueNumber, userAgent, clientId, clientSecret, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
         uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_ISSUES_URI}/${issueNumber}${GITHUB_COMMENTS_URI}`,
@@ -17,7 +17,7 @@ function commentsGetRequest(repository, issueNumber, userAgent, clientId, client
   getRequest(uri, query, userAgent, clientId, clientSecret, callback);
 }
 
-function editCommentPatchRequest(repository, description, commentIdentifier, userAgent, gitHubAccessToken, callback) {
+export function editCommentPatchRequest(repository, description, commentIdentifier, userAgent, gitHubAccessToken, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
         uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_ISSUES_COMMENTS_URI}/${commentIdentifier}`,
@@ -34,7 +34,7 @@ function editCommentPatchRequest(repository, description, commentIdentifier, use
   patchRequest(uri, query, body, userAgent, gitHubAccessToken, callback);
 }
 
-function createCommentPostRequest(repository, description, issueNumber, userAgent, gitHubAccessToken, callback) {
+export function createCommentPostRequest(repository, description, issueNumber, userAgent, gitHubAccessToken, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
         uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_ISSUES_URI}/${issueNumber}${GITHUB_COMMENTS_URI}`,
@@ -51,7 +51,7 @@ function createCommentPostRequest(repository, description, issueNumber, userAgen
   postRequest(uri, query, body, userAgent, gitHubAccessToken, callback);
 }
 
-function removeCommentDeleteRequest(repository, commentIdentifier, userAgent, gitHubAccessToken, callback) {
+export function removeCommentDeleteRequest(repository, commentIdentifier, userAgent, gitHubAccessToken, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
         uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_ISSUES_COMMENTS_URI}/${commentIdentifier}`,
@@ -60,7 +60,7 @@ function removeCommentDeleteRequest(repository, commentIdentifier, userAgent, gi
   deleteRequest(uri, query, userAgent, gitHubAccessToken, callback);
 }
 
-module.exports = {
+export default {
   commentsGetRequest,
   editCommentPatchRequest,
   createCommentPostRequest,

@@ -1,13 +1,13 @@
 "use strict";
 
-const { headers, encodings } = require("necessary");
+import { headers, encodings } from "necessary";
 
-const { APPLICATION_VND_GITHUB_VS_JSON } = require("../constants");
+import { APPLICATION_VND_GITHUB_VS_JSON } from "../constants";
 
 const { BASE64_ENCODING } = encodings,
       { ACCEPT_HEADER, USER_AGENT_HEADER, CONTENT_TYPE_HEADER, AUTHORIZATION_HEADER } = headers;
 
-function headersFromUserAgentAndGitHubAccessToken(userAgent, gitHubAccessToken) {
+export function headersFromUserAgentAndGitHubAccessToken(userAgent, gitHubAccessToken) {
   const tokenAuthorization = `Token ${gitHubAccessToken}`,
         accept = APPLICATION_VND_GITHUB_VS_JSON,  ///
         contentType = APPLICATION_VND_GITHUB_VS_JSON,  ///
@@ -22,7 +22,7 @@ function headersFromUserAgentAndGitHubAccessToken(userAgent, gitHubAccessToken) 
   return headers;
 }
 
-function headersFromUserAgentClientIdAndClientSecret(userAgent, clientId, clientSecret) {
+export function headersFromUserAgentClientIdAndClientSecret(userAgent, clientId, clientSecret) {
   const digest = `${clientId}:${clientSecret}`,
         encodedDigest = Buffer.from(digest).toString(BASE64_ENCODING),
         basicAuthorization = `Basic ${encodedDigest}`,
@@ -36,8 +36,3 @@ function headersFromUserAgentClientIdAndClientSecret(userAgent, clientId, client
 
   return headers;
 }
-
-module.exports = {
-  headersFromUserAgentAndGitHubAccessToken,
-  headersFromUserAgentClientIdAndClientSecret
-};

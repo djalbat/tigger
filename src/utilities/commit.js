@@ -1,15 +1,15 @@
 "use strict";
 
-const { encodings } = require("necessary");
+import { encodings } from "necessary";
 
-const { BLOB_MODE, BLOB_TYPE } = require("../constants"),
-      { getRequest, postRequest } = require("../utilities/request"),
-      { repoFromRepository, ownerFromRepository } = require("../utilities/repository"),
-      { GITHUB_REPOS_URI, GITHUB_GIT_TREES_URI, GITHUB_GIT_BLOBS_URI, GITHUB_GIT_COMMITS_URI, GITHUB_GIT_REFS_HEADS_MASTER_URI } = require("../uris");
+import { BLOB_MODE, BLOB_TYPE } from "../constants";
+import { getRequest, postRequest } from "../utilities/request";
+import { repoFromRepository, ownerFromRepository } from "../utilities/repository";
+import { GITHUB_REPOS_URI, GITHUB_GIT_TREES_URI, GITHUB_GIT_BLOBS_URI, GITHUB_GIT_COMMITS_URI, GITHUB_GIT_REFS_HEADS_MASTER_URI } from "../uris";
 
 const { UTF_8_ENCODING } = encodings;
 
-function commitSHAPostRequest(repository, commitMessage, commitTreeSHA, latestCommitSHA, userAgent, gitHubAccessToken, callback) {
+export function commitSHAPostRequest(repository, commitMessage, commitTreeSHA, latestCommitSHA, userAgent, gitHubAccessToken, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
         uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_GIT_COMMITS_URI}`,
@@ -29,7 +29,7 @@ function commitSHAPostRequest(repository, commitMessage, commitTreeSHA, latestCo
   postRequest(uri, query, body, userAgent, gitHubAccessToken, callback);
 }
 
-function baseTreeSHAGetRequest(repository, latestCommitSHA, userAgent, clientId, clientSecret, callback) {
+export function baseTreeSHAGetRequest(repository, latestCommitSHA, userAgent, clientId, clientSecret, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
         uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_GIT_COMMITS_URI}/${latestCommitSHA}`,
@@ -38,7 +38,7 @@ function baseTreeSHAGetRequest(repository, latestCommitSHA, userAgent, clientId,
   getRequest(uri, query, userAgent, clientId, clientSecret, callback);
 }
 
-function updatedHeadPostRequest(repository, commitSHA, userAgent, gitHubAccessToken, callback) {
+export function updatedHeadPostRequest(repository, commitSHA, userAgent, gitHubAccessToken, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
         uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_GIT_REFS_HEADS_MASTER_URI}`,
@@ -51,7 +51,7 @@ function updatedHeadPostRequest(repository, commitSHA, userAgent, gitHubAccessTo
   postRequest(uri, query, body, userAgent, gitHubAccessToken, callback);
 }
 
-function commitTreeSHAPostRequest(repository, baseTreeSHA, fileSHAs, filePaths, userAgent, gitHubAccessToken, callback) {
+export function commitTreeSHAPostRequest(repository, baseTreeSHA, fileSHAs, filePaths, userAgent, gitHubAccessToken, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
         uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_GIT_TREES_URI}`,
@@ -82,7 +82,7 @@ function commitTreeSHAPostRequest(repository, baseTreeSHA, fileSHAs, filePaths, 
   postRequest(uri, query, body, userAgent, gitHubAccessToken, callback);
 }
 
-function latestCommitSHAGetRequest(repository, userAgent, clientId, clientSecret, callback) {
+export function latestCommitSHAGetRequest(repository, userAgent, clientId, clientSecret, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
         uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_GIT_REFS_HEADS_MASTER_URI}`,
@@ -91,7 +91,7 @@ function latestCommitSHAGetRequest(repository, userAgent, clientId, clientSecret
   getRequest(uri, query, userAgent, clientId, clientSecret, callback);
 }
 
-function contentBlobSHAPostRequest(repository, content, userAgent, gitHubAccessToken, callback) {
+export function contentBlobSHAPostRequest(repository, content, userAgent, gitHubAccessToken, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
         uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_GIT_BLOBS_URI}`,
@@ -105,11 +105,11 @@ function contentBlobSHAPostRequest(repository, content, userAgent, gitHubAccessT
   postRequest(uri, query, body, userAgent, gitHubAccessToken, callback);
 }
 
-module.exports = {
+export default {
   commitSHAPostRequest,
   baseTreeSHAGetRequest,
   updatedHeadPostRequest,
   commitTreeSHAPostRequest,
-  contentBlobSHAPostRequest,
-  latestCommitSHAGetRequest
+  latestCommitSHAGetRequest,
+  contentBlobSHAPostRequest
 };

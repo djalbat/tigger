@@ -1,6 +1,6 @@
 "use strict";
 
-const { commentUtilities } = require("../../..");  ///
+const { commentUtilities } = require("../../../lib");  ///
 
 const { removeCommentDeleteRequest } = commentUtilities;
 
