@@ -1,7 +1,7 @@
 {
   "name": "tigger",
   "author": "James Smith",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "license": "MIT, Anti-996",
   "homepage": "https://github.com/djalbat/tigger",
   "description": "Tales the fun out of using the GitHub API.",
@@ -14,7 +14,7 @@
     "watchful-cli": "^1.7.67"
   },
   "dependencies": {
-    "necessary": "^17.0.7"
+    "necessary": "^17.0.9"
   },
   "scripts": {
     "clean": "rm -rf ./lib",
