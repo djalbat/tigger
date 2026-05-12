@@ -37,11 +37,14 @@ export function editIssuePatchRequest(repository, title, description, issueNumbe
 
   let body = description; ///
 
-  body = JSON.stringify({ ///
-    body,
-    title,
-    encoding
-  });
+  const json = {
+        body,
+          title,
+          encoding
+        },
+        jsonString = JSON.stringify(json);
+
+  body = jsonString;  ///
 
   patchRequest(uri, query, body, userAgent, gitHubAccessToken, callback);
 }
@@ -49,13 +52,15 @@ export function editIssuePatchRequest(repository, title, description, issueNumbe
 export function alterIssuePatchRequest(repository, state, issueNumber, userAgent, gitHubAccessToken, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
-        uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_ISSUES_URI}/${issueNumber}`,
         encoding = UTF_8_ENCODING,
-        query = {},
-        body = JSON.stringify({ ///
+        json = {
           state,
           encoding
-        });
+        },
+        jsonString = JSON.stringify(json),
+        uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_ISSUES_URI}/${issueNumber}`,
+        query = {},
+        body = jsonString;  ///
 
   patchRequest(uri, query, body, userAgent, gitHubAccessToken, callback);
 }
@@ -69,11 +74,14 @@ export function createIssuePostRequest(repository, title, description, userAgent
 
   let body = description; ///
 
-  body = JSON.stringify({ ///
-    body,
-    title,
-    encoding
-  });
+  const json = {
+        body,
+          title,
+          encoding
+        },
+        jsonString = JSON.stringify(json);
+
+  body = jsonString;  ///
 
   postRequest(uri, query, body, userAgent, gitHubAccessToken, callback);
 }

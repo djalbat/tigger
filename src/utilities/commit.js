@@ -12,19 +12,21 @@ const { UTF_8_ENCODING } = encodings;
 export function commitSHAPostRequest(repository, commitMessage, commitTreeSHA, latestCommitSHA, userAgent, gitHubAccessToken, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
-        uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_GIT_COMMITS_URI}`,
         tree = commitTreeSHA, ///
         parent = latestCommitSHA, ///
         parents = [
           parent
         ],
         message = commitMessage,  ///
-        query = {},
-        body = JSON.stringify({
+        json = {
           tree,
           parents,
           message
-        });
+        },
+        jsonString = JSON.stringify(json),
+        uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_GIT_COMMITS_URI}`,
+        query = {},
+        body = jsonString;  ///
 
   postRequest(uri, query, body, userAgent, gitHubAccessToken, callback);
 }
@@ -41,12 +43,14 @@ export function baseTreeSHAGetRequest(repository, latestCommitSHA, userAgent, cl
 export function updatedHeadPostRequest(repository, commitSHA, userAgent, gitHubAccessToken, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
-        uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_GIT_REFS_HEADS_MASTER_URI}`,
         sha = commitSHA,  ///
-        query = {},
-        body = JSON.stringify({
+        json = {
           sha
-        });
+        },
+        jsonString = JSON.stringify(json),
+        uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_GIT_REFS_HEADS_MASTER_URI}`,
+        query = {},
+        body = jsonString;  ///
 
   postRequest(uri, query, body, userAgent, gitHubAccessToken, callback);
 }
@@ -74,10 +78,12 @@ export function commitTreeSHAPostRequest(repository, baseTreeSHA, fileSHAs, file
   });
 
   const query = {},
-        body = JSON.stringify({
+        json = {
           base_tree,
           tree
-        });
+        },
+        jsonString = JSON.stringify(json),
+        body = jsonString;  ///
 
   postRequest(uri, query, body, userAgent, gitHubAccessToken, callback);
 }
@@ -94,13 +100,15 @@ export function latestCommitSHAGetRequest(repository, userAgent, clientId, clien
 export function contentBlobSHAPostRequest(repository, content, userAgent, gitHubAccessToken, callback) {
   const owner = ownerFromRepository(repository),
         repo = repoFromRepository(repository),
-        uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_GIT_BLOBS_URI}`,
         encoding = UTF_8_ENCODING, ///
-        query = {},
-        body = JSON.stringify({
+        json = {
           content,
           encoding
-        })
+        },
+        jsonString = JSON.stringify(json),
+        uri = `${GITHUB_REPOS_URI}/${owner}/${repo}${GITHUB_GIT_BLOBS_URI}`,
+        query = {},
+        body = jsonString;  ///
 
   postRequest(uri, query, body, userAgent, gitHubAccessToken, callback);
 }

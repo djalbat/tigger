@@ -26,10 +26,13 @@ export function editCommentPatchRequest(repository, description, commentIdentifi
 
   let body = description; ///
 
-  body = JSON.stringify({ ///
-    body,
-    encoding
-  });
+  const json = {
+          body,
+          encoding
+        },
+        jsonString = JSON.stringify(json);
+
+  body = jsonString;  ///
 
   patchRequest(uri, query, body, userAgent, gitHubAccessToken, callback);
 }
@@ -43,10 +46,13 @@ export function createCommentPostRequest(repository, description, issueNumber, u
 
   let body = description; ///
 
-  body = JSON.stringify({ ///
-    body,
-    encoding
-  });
+  const json = {
+          body,
+          encoding
+        },
+        jsonString = JSON.stringify(json);
+
+  body = jsonString;  ///
 
   postRequest(uri, query, body, userAgent, gitHubAccessToken, callback);
 }
